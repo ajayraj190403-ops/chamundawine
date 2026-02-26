@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chamunda Wines | GOD MODE</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:'Poppins',sans-serif;
+  background:#050505;
+  color:white;
+  overflow-x:hidden;
+}
+
+/* LOADER */
+#loader{
+  position:fixed;
+  inset:0;
+  background:black;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+  font-size:40px;
+  font-family:'Playfair Display',serif;
+  letter-spacing:3px;
+}
+
+/* NAV */
+nav{
+  position:fixed;
+  width:100%;
+  top:0;
+  padding:25px 8%;
+  display:flex;
+  justify-content:space-between;
+  z-index:1000;
+  mix-blend-mode:difference;
+}
+
+/* HERO */
+.hero{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  background:url("https://images.unsplash.com/photo-1510626176961-4b37d0b0d8f2?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+  position:relative;
+}
+
+.hero::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at center,rgba(0,0,0,0.3),#000 80%);
+}
+
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:80px;
+  z-index:2;
+}
+
+.hero p{
+  z-index:2;
+  margin-top:20px;
+  color:#ccc;
+}
+
+/* STORY SECTION */
+.story{
+  height:200vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+}
+
+.story-text{
+  font-size:50px;
+  font-family:'Playfair Display',serif;
+  max-width:800px;
+  text-align:center;
+}
+
+/* HORIZONTAL PRODUCTS */
+.products{
+  height:100vh;
+  overflow:hidden;
+  position:relative;
+}
+
+.horizontal{
+  display:flex;
+  height:100%;
+}
+
+.panel{
+  min-width:100vw;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  font-size:40px;
+}
+
+.panel img{
+  width:300px;
+  border-radius:20px;
+  margin-bottom:20px;
+}
+
+/* WHATSAPP */
+.whatsapp{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  padding:15px;
+  border-radius:50%;
+  font-size:24px;
+  text-decoration:none;
+  color:white;
+}
+
+/* GOLD TEXT */
+.gold{
+  background:linear-gradient(90deg,#d4af37,#fff6b7,#d4af37);
+  background-size:200%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+</style>
+</head>
+<body>
+
+<div id="loader" class="gold">CHAMUNDA WINES</div>
+
+<nav>
+  <div>Chamunda Wines</div>
+  <div>Rajasthan</div>
+</nav>
+
+<section class="hero">
+  <h1 class="gold">Luxury Reimagined</h1>
+  <p>Premium Wines & Spirits</p>
+</section>
+
+<section class="story">
+  <div class="story-text gold">
+    Crafted for Royal Taste. Designed for Legends.
+  </div>
+</section>
+
+<section class="products">
+  <div class="horizontal">
+    <div class="panel">
+      <img src="https://images.unsplash.com/photo-1510626176961-4b37d0b0d8f2">
+      Premium Red Wine
+    </div>
+    <div class="panel">
+      <img src="https://images.unsplash.com/photo-1580910051074-3eb694886505">
+      Luxury Whiskey
+    </div>
+    <div class="panel">
+      <img src="https://images.unsplash.com/photo-1566478989037-eec170784d0b">
+      Exclusive Vodka
+    </div>
+  </div>
+</section>
+
+<a href="https://wa.me/919999999999" class="whatsapp">💬</a>
+
+<script>
+
+gsap.registerPlugin(ScrollTrigger);
+
+/* LOADER ANIMATION */
+gsap.to("#loader",{
+  opacity:0,
+  duration:2,
+  delay:1.5,
+  onComplete:()=>{document.getElementById("loader").style.display="none";}
+});
+
+/* HERO ZOOM EFFECT */
+gsap.to(".hero",{
+  scale:1.2,
+  scrollTrigger:{
+    trigger:".hero",
+    start:"top top",
+    end:"bottom top",
+    scrub:true
+  }
+});
+
+/* STORY PIN + FADE */
+gsap.to(".story-text",{
+  opacity:0,
+  scrollTrigger:{
+    trigger:".story",
+    start:"top center",
+    end:"bottom center",
+    scrub:true,
+    pin:true
+  }
+});
+
+/* HORIZONTAL SCROLL */
+let sections = gsap.utils.toArray(".panel");
+gsap.to(sections,{
+  xPercent:-100*(sections.length-1),
+  ease:"none",
+  scrollTrigger:{
+    trigger:".products",
+    pin:true,
+    scrub:1,
+    end:()=>"+="+document.querySelector(".products").offsetWidth
+  }
+});
+
+/* BACKGROUND MORPH */
+gsap.to("body",{
+  backgroundColor:"#120000",
+  scrollTrigger:{
+    trigger:".story",
+    start:"top center",
+    scrub:true
+  }
+});
+
+</script>
+
+</body>
+  </html>
