@@ -3,46 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chamunda Wines | Ultra Premium</title>
+<title>Chamunda Wines | Rajasthan</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 
-/* ================= GLOBAL ================= */
+/* ================= GLOBAL STYLES ================= */
 
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-}
-
-html{
   scroll-behavior:smooth;
 }
 
 body{
-  font-family:'Poppins',sans-serif;
-  background:#0e0e0e;
-  color:#fff;
-  overflow-x:hidden;
+  font-family:'Poppins', sans-serif;
+  background:#111;
+  color:#eee;
 }
 
 h1,h2,h3{
-  font-family:'Playfair Display',serif;
+  font-family:'Playfair Display', serif;
 }
 
-/* Gold Gradient Animation */
-.gold-text{
-  background:linear-gradient(90deg,#d4af37,#fff5b7,#d4af37);
-  background-size:200% auto;
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  animation:shine 4s linear infinite;
+section{
+  padding:80px 10%;
 }
 
-@keyframes shine{
-  to{background-position:200% center;}
+.gold{
+  color:#d4af37;
 }
 
 /* ================= NAVBAR ================= */
@@ -51,97 +43,78 @@ nav{
   position:fixed;
   width:100%;
   top:0;
-  padding:18px 8%;
+  background:#1a1a1a;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  background:rgba(0,0,0,0.6);
-  backdrop-filter:blur(10px);
+  padding:15px 10%;
   z-index:1000;
-  transition:0.3s;
-}
-
-nav.scrolled{
-  background:#111;
-  box-shadow:0 5px 20px rgba(0,0,0,0.6);
+  box-shadow:0 2px 10px rgba(0,0,0,0.5);
 }
 
 .logo{
-  font-size:26px;
+  font-size:24px;
   font-weight:700;
+  color:#d4af37;
 }
 
 nav ul{
-  list-style:none;
   display:flex;
-  gap:30px;
+  list-style:none;
+  gap:25px;
 }
 
 nav a{
   text-decoration:none;
   color:#fff;
   font-weight:500;
-  position:relative;
-}
-
-nav a::after{
-  content:'';
-  position:absolute;
-  left:0;
-  bottom:-5px;
-  width:0%;
-  height:2px;
-  background:#d4af37;
   transition:0.3s;
 }
 
-nav a:hover::after{
-  width:100%;
+nav a:hover{
+  color:#d4af37;
 }
 
-/* ================= HERO ================= */
+/* Mobile Menu */
+.menu-toggle{
+  display:none;
+  font-size:28px;
+  cursor:pointer;
+}
+
+/* ================= HERO SECTION ================= */
 
 .hero{
   height:100vh;
-  background:url("https://images.unsplash.com/photo-1510626176961-4b37d0b0d8f2?auto=format&fit=crop&w=1600&q=80") center/cover fixed;
+  background:linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
+  url("https://images.unsplash.com/photo-1510626176961-4b37d0b0d8f2?auto=format&fit=crop&w=1600&q=80");
+  background-size:cover;
+  background-position:center;
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   text-align:center;
-  padding:0 10%;
-  position:relative;
+  padding-top:80px;
 }
 
-.hero::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to bottom,rgba(0,0,0,0.7),#0e0e0e);
+.hero-content h1{
+  font-size:50px;
 }
 
-.hero-content{
-  position:relative;
-  animation:fadeUp 1.5s ease forwards;
-}
-
-.hero h1{
-  font-size:60px;
-}
-
-.hero p{
+.hero-content p{
   margin:20px 0;
+  font-size:18px;
   color:#ccc;
 }
 
 .btn{
-  position:relative;
-  padding:14px 35px;
-  border:none;
-  border-radius:40px;
   background:#8b0000;
+  padding:12px 30px;
+  border:none;
   color:#fff;
+  font-weight:500;
   cursor:pointer;
-  overflow:hidden;
+  border-radius:30px;
   transition:0.3s;
 }
 
@@ -150,68 +123,77 @@ nav a:hover::after{
   color:#111;
 }
 
-/* Ripple Effect */
-.btn::after{
-  content:'';
-  position:absolute;
-  width:0;
-  height:0;
-  background:rgba(255,255,255,0.5);
-  border-radius:50%;
-  transform:translate(-50%,-50%);
-  top:50%;
-  left:50%;
-  transition:0.6s;
-}
-
-.btn:active::after{
-  width:300px;
-  height:300px;
-}
-
-/* ================= SECTIONS ================= */
-
-section{
-  padding:100px 10%;
-}
+/* ================= CATALOG ================= */
 
 .catalog-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:30px;
-  margin-top:50px;
+  gap:25px;
+  margin-top:40px;
 }
 
 .card{
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.1);
-  border-radius:20px;
-  overflow:hidden;
-  transition:0.4s;
-  backdrop-filter:blur(10px);
-  transform:translateY(50px);
-  opacity:0;
-}
-
-.card.show{
-  transform:translateY(0);
-  opacity:1;
+  background:#1c1c1c;
+  padding:20px;
+  border-radius:15px;
+  text-align:center;
+  transition:0.3s;
+  border:1px solid #333;
 }
 
 .card:hover{
-  transform:translateY(-10px) scale(1.03);
-  box-shadow:0 15px 40px rgba(212,175,55,0.3);
+  transform:translateY(-8px);
+  border-color:#d4af37;
 }
 
 .card img{
   width:100%;
   height:250px;
   object-fit:cover;
+  border-radius:10px;
 }
 
 .card h3{
-  padding:20px;
+  margin:15px 0 10px;
   color:#d4af37;
+}
+
+/* ================= ABOUT ================= */
+
+.about{
+  background:#181818;
+  text-align:center;
+}
+
+/* ================= CONTACT ================= */
+
+.contact form{
+  max-width:500px;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+input, textarea{
+  padding:12px;
+  border:none;
+  border-radius:8px;
+  background:#222;
+  color:#fff;
+}
+
+input:focus, textarea:focus{
+  outline:2px solid #d4af37;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+  background:#000;
+  text-align:center;
+  padding:20px;
+  color:#777;
 }
 
 /* ================= AGE MODAL ================= */
@@ -219,29 +201,39 @@ section{
 .modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.9);
+  background:rgba(0,0,0,0.95);
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   z-index:2000;
 }
 
 .modal-content{
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(15px);
-  border:1px solid rgba(255,255,255,0.2);
-  padding:50px;
-  border-radius:25px;
+  background:#1a1a1a;
+  padding:40px;
+  border-radius:15px;
   text-align:center;
-  animation:fadeUp 1s ease;
+  max-width:400px;
+  border:2px solid #d4af37;
 }
 
-.modal button{
-  margin:15px;
-  padding:10px 30px;
-  border-radius:30px;
+.modal-content h2{
+  margin-bottom:20px;
+  color:#d4af37;
+}
+
+.modal-buttons{
+  display:flex;
+  gap:20px;
+  justify-content:center;
+}
+
+.modal-buttons button{
+  padding:10px 25px;
   border:none;
+  border-radius:20px;
   cursor:pointer;
+  font-weight:500;
 }
 
 .yes-btn{
@@ -254,81 +246,129 @@ section{
   color:white;
 }
 
-/* ================= ANIMATIONS ================= */
-
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(40px);}
-  to{opacity:1;transform:translateY(0);}
+.yes-btn:hover{
+  background:#d4af37;
+  color:#111;
 }
 
 /* ================= RESPONSIVE ================= */
 
 @media(max-width:768px){
-  .hero h1{font-size:35px;}
-  nav ul{display:none;}
+  nav ul{
+    position:absolute;
+    top:70px;
+    right:0;
+    background:#1a1a1a;
+    flex-direction:column;
+    width:200px;
+    padding:20px;
+    display:none;
+  }
+
+  nav ul.active{
+    display:flex;
+  }
+
+  .menu-toggle{
+    display:block;
+    color:white;
+  }
+
+  .hero-content h1{
+    font-size:32px;
+  }
 }
 
 </style>
 </head>
 <body>
 
-<!-- AGE GATE -->
+<!-- AGE MODAL -->
 <div class="modal" id="ageModal">
   <div class="modal-content">
-    <h2 class="gold-text">Are you 18+ in Rajasthan?</h2>
-    <button class="yes-btn" onclick="enterSite()">Yes</button>
-    <button class="no-btn" onclick="exitSite()">No</button>
+    <h2>Are you of legal drinking age in Rajasthan (18+)?</h2>
+    <div class="modal-buttons">
+      <button class="yes-btn" onclick="enterSite()">Yes</button>
+      <button class="no-btn" onclick="exitSite()">No</button>
+    </div>
   </div>
 </div>
 
-<nav id="navbar">
-  <div class="logo gold-text">Chamunda Wines</div>
-  <ul>
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">Chamunda Wines</div>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <ul id="navLinks">
     <li><a href="#home">Home</a></li>
     <li><a href="#catalog">Catalog</a></li>
-    <li><a href="#about">About</a></li>
+    <li><a href="#about">About Us</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
+<!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-content">
-    <h1 class="gold-text">Experience Premium Spirits</h1>
-    <p>Luxury Wines & Finest Liquor in Rajasthan</p>
-    <button class="btn" onclick="scrollToCatalog()">Explore Collection</button>
+    <h1>Welcome to <span class="gold">Chamunda Wines</span></h1>
+    <p>Premium Wines & Spirits in Rajasthan</p>
+    <a href="#catalog"><button class="btn">Explore Collection</button></a>
   </div>
 </section>
 
+<!-- CATALOG -->
 <section id="catalog">
-  <h2 class="gold-text">Our Collection</h2>
+  <h2 class="gold">Our Premium Collection</h2>
   <div class="catalog-grid">
-    <div class="card"><img src="https://images.unsplash.com/photo-1510626176961-4b37d0b0d8f2"><h3>Red Wine</h3></div>
-    <div class="card"><img src="https://images.unsplash.com/photo-1580910051074-3eb694886505"><h3>Whiskey</h3></div>
-    <div class="card"><img src="https://images.unsplash.com/photo-1566478989037-eec170784d0b"><h3>Vodka</h3></div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1510626176961-4b37d0b0d8f2" alt="">
+      <h3>Red Wine</h3>
+      <p>Imported & Indian premium selections.</p>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1580910051074-3eb694886505" alt="">
+      <h3>Whiskey</h3>
+      <p>Finest Scotch & Indian blends.</p>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1566478989037-eec170784d0b" alt="">
+      <h3>Vodka</h3>
+      <p>Smooth & refined premium vodkas.</p>
+    </div>
+
   </div>
 </section>
 
-<section id="about">
-  <h2 class="gold-text">About Chamunda Wines</h2>
-  <p style="margin-top:20px;color:#ccc;max-width:700px;">
-    Rajasthan’s premium destination for authentic wines and luxury spirits.
+<!-- ABOUT -->
+<section class="about" id="about">
+  <h2 class="gold">About Chamunda Wines</h2>
+  <p style="margin-top:20px;color:#ccc;max-width:700px;margin:auto;">
+    Located in Rajasthan, Chamunda Wines is dedicated to offering premium quality wines and spirits.
+    We focus on authenticity, quality, and customer satisfaction.
   </p>
 </section>
 
-<section id="contact">
-  <h2 class="gold-text">Contact Us</h2>
-  <p style="color:#ccc;">Visit us for premium collection & offers.</p>
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <h2 class="gold">Contact Us</h2>
+  <form onsubmit="submitForm(event)">
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Your Email" required>
+    <textarea rows="5" placeholder="Your Message" required></textarea>
+    <button class="btn" type="submit">Send Message</button>
+  </form>
 </section>
+
+<footer>
+  © 2026 Chamunda Wines | Rajasthan | 18+ Only
+</footer>
 
 <script>
 
-/* AGE VERIFICATION */
-if(localStorage.getItem("ageVerified")){
-  document.getElementById("ageModal").style.display="none";
-}
-
+/* AGE GATE */
 function enterSite(){
-  localStorage.setItem("ageVerified",true);
   document.getElementById("ageModal").style.display="none";
 }
 
@@ -336,28 +376,18 @@ function exitSite(){
   window.location.href="https://www.google.com/search?q=google.com";
 }
 
-/* NAV SCROLL EFFECT */
-window.addEventListener("scroll",()=>{
-  document.getElementById("navbar").classList.toggle("scrolled",window.scrollY>50);
-});
-
-/* SCROLL TO CATALOG */
-function scrollToCatalog(){
-  document.getElementById("catalog").scrollIntoView({behavior:"smooth"});
+/* MOBILE MENU */
+function toggleMenu(){
+  document.getElementById("navLinks").classList.toggle("active");
 }
 
-/* SCROLL ANIMATION */
-const cards=document.querySelectorAll(".card");
-window.addEventListener("scroll",()=>{
-  cards.forEach(card=>{
-    const rect=card.getBoundingClientRect();
-    if(rect.top<window.innerHeight-100){
-      card.classList.add("show");
-    }
-  });
-});
+/* CONTACT FORM */
+function submitForm(e){
+  e.preventDefault();
+  alert("Thank you for contacting Chamunda Wines!");
+}
 
 </script>
 
 </body>
-</html>
+  </html>
