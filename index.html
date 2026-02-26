@@ -3,235 +3,361 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chamunda Wines | Immortal Edition</title>
+<title>Chamunda Wines | Ultra Premium</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
 <style>
 
-*{margin:0;padding:0;box-sizing:border-box;}
+/* ================= GLOBAL ================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
 body{
   font-family:'Poppins',sans-serif;
-  background:#0b0b0b;
-  color:white;
+  background:#0e0e0e;
+  color:#fff;
   overflow-x:hidden;
 }
-section{padding:120px 10%;}
 
-h1,h2{font-family:'Playfair Display',serif;}
+h1,h2,h3{
+  font-family:'Playfair Display',serif;
+}
 
-.gold{
-  background:linear-gradient(90deg,#d4af37,#fff6b7,#d4af37);
+/* Gold Gradient Animation */
+.gold-text{
+  background:linear-gradient(90deg,#d4af37,#fff5b7,#d4af37);
   background-size:200% auto;
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
+  animation:shine 4s linear infinite;
 }
 
-/* PRELOADER */
-#loader{
-  position:fixed;
-  inset:0;
-  background:black;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:3000;
-  font-size:40px;
+@keyframes shine{
+  to{background-position:200% center;}
 }
 
-/* NAV */
+/* ================= NAVBAR ================= */
+
 nav{
   position:fixed;
   width:100%;
   top:0;
-  padding:20px 8%;
-  display:flex;
-  justify-content:space-between;
-  background:rgba(0,0,0,0.4);
-  backdrop-filter:blur(10px);
-  z-index:1000;
-}
-
-/* HERO */
-.hero{
-  height:100vh;
+  padding:18px 8%;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:0 10%;
-}
-
-.hero-text{
-  max-width:500px;
-}
-
-.hero h1{font-size:60px;}
-
-.hero-img{
-  perspective:1000px;
-}
-
-.hero-img img{
-  width:350px;
-  transform-style:preserve-3d;
-  animation:float 4s ease-in-out infinite;
-}
-
-@keyframes float{
-  0%,100%{transform:rotateY(-15deg) translateY(0);}
-  50%{transform:rotateY(15deg) translateY(-20px);}
-}
-
-/* BUTTON */
-.btn{
-  margin-top:20px;
-  padding:14px 35px;
-  border-radius:40px;
-  background:#8b0000;
-  border:none;
-  color:white;
-  cursor:pointer;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(10px);
+  z-index:1000;
   transition:0.3s;
 }
-.btn:hover{background:#d4af37;color:black;}
 
-/* PRODUCTS SLIDER */
-.slider{
+nav.scrolled{
+  background:#111;
+  box-shadow:0 5px 20px rgba(0,0,0,0.6);
+}
+
+.logo{
+  font-size:26px;
+  font-weight:700;
+}
+
+nav ul{
+  list-style:none;
   display:flex;
-  overflow:hidden;
+  gap:30px;
+}
+
+nav a{
+  text-decoration:none;
+  color:#fff;
+  font-weight:500;
   position:relative;
 }
 
-.slide{
-  min-width:100%;
+nav a::after{
+  content:'';
+  position:absolute;
+  left:0;
+  bottom:-5px;
+  width:0%;
+  height:2px;
+  background:#d4af37;
+  transition:0.3s;
+}
+
+nav a:hover::after{
+  width:100%;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+  height:100vh;
+  background:url("https://images.unsplash.com/photo-1510626176961-4b37d0b0d8f2?auto=format&fit=crop&w=1600&q=80") center/cover fixed;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:0 10%;
+  position:relative;
+}
+
+.hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to bottom,rgba(0,0,0,0.7),#0e0e0e);
+}
+
+.hero-content{
+  position:relative;
+  animation:fadeUp 1.5s ease forwards;
+}
+
+.hero h1{
+  font-size:60px;
+}
+
+.hero p{
+  margin:20px 0;
+  color:#ccc;
+}
+
+.btn{
+  position:relative;
+  padding:14px 35px;
+  border:none;
+  border-radius:40px;
+  background:#8b0000;
+  color:#fff;
+  cursor:pointer;
+  overflow:hidden;
+  transition:0.3s;
+}
+
+.btn:hover{
+  background:#d4af37;
+  color:#111;
+}
+
+/* Ripple Effect */
+.btn::after{
+  content:'';
+  position:absolute;
+  width:0;
+  height:0;
+  background:rgba(255,255,255,0.5);
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  top:50%;
+  left:50%;
   transition:0.6s;
-  text-align:center;
 }
 
-.slide img{
+.btn:active::after{
   width:300px;
+  height:300px;
+}
+
+/* ================= SECTIONS ================= */
+
+section{
+  padding:100px 10%;
+}
+
+.catalog-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:30px;
+  margin-top:50px;
+}
+
+.card{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
   border-radius:20px;
+  overflow:hidden;
+  transition:0.4s;
+  backdrop-filter:blur(10px);
+  transform:translateY(50px);
+  opacity:0;
 }
 
-.slider-buttons{
+.card.show{
+  transform:translateY(0);
+  opacity:1;
+}
+
+.card:hover{
+  transform:translateY(-10px) scale(1.03);
+  box-shadow:0 15px 40px rgba(212,175,55,0.3);
+}
+
+.card img{
+  width:100%;
+  height:250px;
+  object-fit:cover;
+}
+
+.card h3{
+  padding:20px;
+  color:#d4af37;
+}
+
+/* ================= AGE MODAL ================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.9);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:2000;
+}
+
+.modal-content{
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(15px);
+  border:1px solid rgba(255,255,255,0.2);
+  padding:50px;
+  border-radius:25px;
   text-align:center;
-  margin-top:20px;
+  animation:fadeUp 1s ease;
 }
 
-.slider-buttons button{
-  margin:5px;
-  padding:8px 15px;
+.modal button{
+  margin:15px;
+  padding:10px 30px;
+  border-radius:30px;
   border:none;
   cursor:pointer;
 }
 
-/* WHATSAPP */
-.whatsapp{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#25D366;
-  padding:15px;
-  border-radius:50%;
-  font-size:24px;
+.yes-btn{
+  background:#8b0000;
   color:white;
-  text-decoration:none;
 }
 
-/* CONTACT */
-.contact{
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(10px);
-  border-radius:20px;
-  padding:50px;
+.no-btn{
+  background:#555;
+  color:white;
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(40px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:768px){
+  .hero h1{font-size:35px;}
+  nav ul{display:none;}
 }
 
 </style>
 </head>
 <body>
 
-<div id="loader" class="gold">Chamunda Wines</div>
+<!-- AGE GATE -->
+<div class="modal" id="ageModal">
+  <div class="modal-content">
+    <h2 class="gold-text">Are you 18+ in Rajasthan?</h2>
+    <button class="yes-btn" onclick="enterSite()">Yes</button>
+    <button class="no-btn" onclick="exitSite()">No</button>
+  </div>
+</div>
 
-<nav>
-  <div class="gold">Chamunda Wines</div>
-  <div>Luxury Since 2026</div>
+<nav id="navbar">
+  <div class="logo gold-text">Chamunda Wines</div>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#catalog">Catalog</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
 </nav>
 
-<section class="hero">
-  <div class="hero-text">
-    <h1 class="gold">Crafted for Royal Taste</h1>
-    <p>Premium Wines & Spirits in Rajasthan</p>
-    <button class="btn">Explore Collection</button>
-  </div>
-  <div class="hero-img">
-    <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=600&q=80">
+<section class="hero" id="home">
+  <div class="hero-content">
+    <h1 class="gold-text">Experience Premium Spirits</h1>
+    <p>Luxury Wines & Finest Liquor in Rajasthan</p>
+    <button class="btn" onclick="scrollToCatalog()">Explore Collection</button>
   </div>
 </section>
 
-<section>
-  <h2 class="gold">Featured Collection</h2>
-
-  <div class="slider">
-    <div class="slide"><img src="https://images.unsplash.com/photo-1510626176961-4b37d0b0d8f2"><h3>Premium Red Wine</h3></div>
-    <div class="slide"><img src="https://images.unsplash.com/photo-1580910051074-3eb694886505"><h3>Luxury Whiskey</h3></div>
-    <div class="slide"><img src="https://images.unsplash.com/photo-1566478989037-eec170784d0b"><h3>Exclusive Vodka</h3></div>
-  </div>
-
-  <div class="slider-buttons">
-    <button onclick="prevSlide()">Prev</button>
-    <button onclick="nextSlide()">Next</button>
+<section id="catalog">
+  <h2 class="gold-text">Our Collection</h2>
+  <div class="catalog-grid">
+    <div class="card"><img src="https://images.unsplash.com/photo-1510626176961-4b37d0b0d8f2"><h3>Red Wine</h3></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1580910051074-3eb694886505"><h3>Whiskey</h3></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1566478989037-eec170784d0b"><h3>Vodka</h3></div>
   </div>
 </section>
 
-<section>
-  <div class="contact">
-    <h2 class="gold">Visit Chamunda Wines</h2>
-    <p>Rajasthan’s Premium Liquor Destination.</p>
-  </div>
+<section id="about">
+  <h2 class="gold-text">About Chamunda Wines</h2>
+  <p style="margin-top:20px;color:#ccc;max-width:700px;">
+    Rajasthan’s premium destination for authentic wines and luxury spirits.
+  </p>
 </section>
 
-<a href="https://wa.me/919999999999" class="whatsapp">💬</a>
+<section id="contact">
+  <h2 class="gold-text">Contact Us</h2>
+  <p style="color:#ccc;">Visit us for premium collection & offers.</p>
+</section>
 
 <script>
 
-gsap.registerPlugin(ScrollTrigger);
+/* AGE VERIFICATION */
+if(localStorage.getItem("ageVerified")){
+  document.getElementById("ageModal").style.display="none";
+}
 
-/* PRELOADER */
-gsap.to("#loader",{opacity:0,duration:2,delay:1,onComplete:()=>{
-  document.getElementById("loader").style.display="none";
-}});
+function enterSite(){
+  localStorage.setItem("ageVerified",true);
+  document.getElementById("ageModal").style.display="none";
+}
 
-/* HERO ANIMATION */
-gsap.from(".hero-text",{x:-100,opacity:0,duration:1.5});
-gsap.from(".hero-img",{x:100,opacity:0,duration:1.5});
+function exitSite(){
+  window.location.href="https://www.google.com/search?q=google.com";
+}
 
-/* SCROLL COLOR MORPH */
-gsap.to("body",{
-  backgroundColor:"#111",
-  scrollTrigger:{
-    trigger:".slider",
-    start:"top center",
-    scrub:true
-  }
+/* NAV SCROLL EFFECT */
+window.addEventListener("scroll",()=>{
+  document.getElementById("navbar").classList.toggle("scrolled",window.scrollY>50);
 });
 
-/* SLIDER */
-let current=0;
-const slides=document.querySelectorAll(".slide");
-
-function showSlide(index){
-  slides.forEach((slide,i)=>{
-    slide.style.transform=`translateX(${100*(i-index)}%)`;
-  });
+/* SCROLL TO CATALOG */
+function scrollToCatalog(){
+  document.getElementById("catalog").scrollIntoView({behavior:"smooth"});
 }
-function nextSlide(){current=(current+1)%slides.length;showSlide(current);}
-function prevSlide(){current=(current-1+slides.length)%slides.length;showSlide(current);}
-showSlide(current);
+
+/* SCROLL ANIMATION */
+const cards=document.querySelectorAll(".card");
+window.addEventListener("scroll",()=>{
+  cards.forEach(card=>{
+    const rect=card.getBoundingClientRect();
+    if(rect.top<window.innerHeight-100){
+      card.classList.add("show");
+    }
+  });
+});
 
 </script>
 
 </body>
-  </html>
+</html>
